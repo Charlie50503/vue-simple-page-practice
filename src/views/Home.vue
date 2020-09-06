@@ -65,7 +65,7 @@
 											<span class="item-name">{{item.Name}}</span>
 										</div>
 										<div class="item-dist-block">
-											<span class="item-dist">三民區</span>
+											<span class="item-dist">{{item.Zone}}</span>
 										</div>
 									</div>
 									<div class="dist-info-block">
@@ -111,12 +111,31 @@
 				</div>
 			</section>
 			<section>
-				
+				<div class="page-idx-list-block">
+					<ul class="page-idx-list">
+						<li class="page-idx-li prev">
+							<a href="#" @click="changeView(pageIdx-1)">{{pagePrevLabel}}</a>
+						</li>
+						<li v-for="page in viewPageIdxList" :class="pageIdxLiClass(page)">
+							<a href="#" @click="changeView(page)">{{page}}</a>
+						</li>
+						<li class="page-idx-li next">
+							<a href="#" @click="changeView(pageIdx+1)">{{pageNextLabel}}</a>
+						</li>
+					</ul>
+				</div>
 			</section>
 		</content>
-		<!-- <footer>
-
-		</footer> -->
+		<footer>
+			<div class="footer-block">
+				<div class="footer-first-block">
+					<span>高雄資訊網</span>
+				</div>
+				<div class="footer-second-block">
+					<span>資料來源：高雄市政府</span>
+				</div>
+			</div>
+		</footer>
 	</div>
 </template>
 
@@ -128,6 +147,8 @@
 		name: 'Home',
 		data() {
 			return {
+				pagePrevLabel:'< prev',
+				pageNextLabel:'next >',
 				data: [],
 				pageIdx:1,
 				selectedDist:'',
@@ -135,6 +156,7 @@
 			}
 		},
 		computed:{
+			
 			filterData(){
 				return this.selectDistData.filter((item,idx)=>{
 					if(idx < this.pageIdx*8 && (this.pageIdx*1-1) <= idx){
@@ -151,20 +173,43 @@
 					zoneList.push(item.Zone)
 					return zoneList
 				},[])
+			},
+			selectDistDataSize(){
+				return this.selectDistData.length
+			},
+			pageIdxList(){
+				let arr = []
+				let pageMaxSize = this.selectDistDataSize/8 | 0
+				let leftNum = this.selectDistDataSize % 8
+				if(leftNum > 0) pageMaxSize +=1
+				for(let cnt=1 ; cnt <= pageMaxSize; cnt++){
+					arr.push(cnt)
+				}
+				return arr
+			},
+			viewPageIdxList(){
+				return this.pageIdxList.reduce((viewPageList,pageIdx)=>{
+					if(this.pageIdx <= pageIdx && pageIdx <= (this.pageIdx+4)){
+						viewPageList.push(pageIdx) 
+					}
+					return viewPageList
+				},[])
 			}
-			
-			
-		},
-		components: {
-			
 		},
 		methods:{
+			pageIdxLiClass(page){
+				return (this.pageIdx === page ? 'page-idx-li selected' : 'page-idx-li') 
+			},
+			changeView(page){
+				if( page === 0 ) return
+				if( page > this.pageIdxList.length) return
+				this.pageIdx = page
+			},
 			isSelectDistData(){
 				if(this.selectedDist===''){
 					return this.data
 				}
 				return this.data.filter(item=>{
-					debugger
 					if(item.Zone===this.selectedDist) return item
 				})
 				
@@ -184,8 +229,8 @@
 			addReturnTopEvent(){
 				const distInfoList = document.querySelector('.dist-info-list')
 				distInfoList.addEventListener('click',(e)=>{
-					console.log(e.target.classList.value)
-					if(e.target.classList.value.includes('return-icon')){
+					console.log(e.target.className)
+					if(e.target.className.includes('return-icon')){
 						document.body.scrollTop = document.documentElement.scrollTop = 0;
 					}
 					
@@ -501,4 +546,64 @@
 		cursor: pointer;
 	}
 	
+	.page-idx-list-block {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.page-idx-list {
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+	}
+	
+	.page-idx-li {
+		padding: 0 10px 0 10px;
+	}
+	
+	.page-idx-li a {
+		font-family: .AppleSystemUIFont;
+		font-size: 14px;
+		color: #4A4A4A;
+	}
+	
+	.page-idx-li a.prev {
+		color: rgba(73,73,73,0.50);
+	}
+	
+	.page-idx-li.selected a {
+		color: #559AC8;
+	}
+	
+	footer {
+		display: flex;
+		justify-content: center;
+	}
+	
+	.footer-block {
+		width: 1024px;
+		height: 90px;
+		background: #559AC8;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.footer-first-block span {
+		font-family: .AppleSystemUIFont;
+		font-size: 14px;
+		color: #FFFFFF;
+	}
+	
+	.footer-second-block {
+		padding-top: 10px;
+	}
+	
+	.footer-second-block span {
+		font-family: .AppleSystemUIFont;
+		font-size: 14px;
+		color: #FFD366;
+	}
 </style>
