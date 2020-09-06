@@ -635,7 +635,7 @@
 		}
 		
 		.dist-list-block .dist-list li {
-			padding: 10px 10px 10px 0px;
+			padding: 5px 5px 5px 0px;
 		}
 		
 		.dist-info {
