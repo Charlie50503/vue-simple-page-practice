@@ -17,7 +17,7 @@ git add -A
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
-git remote add origin https://github.com/Charlie50503/-vue-simple-page-practice-demo.git
+#git remote add origin https://github.com/Charlie50503/-vue-simple-page-practice-demo.git
 git push -f git@github.com:Charlie50503/-vue-simple-page-practice-demo.git master
 
 cd -

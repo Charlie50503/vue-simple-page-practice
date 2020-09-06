@@ -638,6 +638,11 @@
 			padding: 5px 5px 5px 0px;
 		}
 		
+		.popular-dist-btn {
+			width: 100px;
+			height: 40px;
+		}
+		
 		.dist-info {
 			width: 100%;
 			display: flex;
