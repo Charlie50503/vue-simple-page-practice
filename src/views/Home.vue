@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="full-page-block">
 		<header>
 			<div class="header-info">
 				<div>
@@ -605,5 +605,72 @@
 		font-family: .AppleSystemUIFont;
 		font-size: 14px;
 		color: #FFD366;
+	}
+	
+	
+	
+	@media screen and (-ms-high-contrast: active), 
+		(-ms-high-contrast: none) 
+		and (max-width: 500px) {}
+		
+	@media (max-width: 500px) {
+		.full-page-block {
+			width: 100%;
+		}
+		
+		#LOCAT_SELECT {
+			width: 80vw;
+		}
+		
+		.dist-list-block {
+			width: 90vw;
+			height: 160px;
+		}
+		
+		.dist-list-block .dist-list {
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding: 0 0 0 25px;
+			margin: 0;
+		}
+		
+		.dist-list-block .dist-list li {
+			padding: 10px 10px 10px 0px;
+		}
+		
+		.dist-info {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+		
+		.dist-info-list {
+			left:-7vw;
+		}
+		
+		.dist-img-block {
+			width: 80vw;
+		}
+		
+		.dist-info-block {
+			width: 80vw;
+		}
+		
+		.return-icon::after {
+			left: 75vw;
+		}
+		
+		.page-idx-list {
+			padding-left: 0;
+		}
+		
+		.page-idx-li.prev {
+			padding-left: 0;
+		}
+		
+		.page-idx-li.next {
+			padding-right: 0;
+		}
 	}
 </style>
