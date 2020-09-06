@@ -22,4 +22,4 @@ npm run lint
 
 #DEMO
 
-#[DEMO](https://charlie50503.github.io/-vue-simple-page-practice-demo/#/).
+[DEMO](https://charlie50503.github.io/-vue-simple-page-practice-demo/#/).
