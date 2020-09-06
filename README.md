@@ -20,5 +20,5 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#DEMO
+[DEMO](https://charlie50503.github.io/-vue-simple-page-practice-demo/#/).
