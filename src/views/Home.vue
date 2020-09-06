@@ -159,7 +159,7 @@
 			
 			filterData(){
 				return this.selectDistData.filter((item,idx)=>{
-					if(idx < this.pageIdx*8 && (this.pageIdx*1-1) <= idx){
+					if(idx < (this.pageIdx + 7) && (this.pageIdx-1) <= idx){
 						return item
 					}
 				})

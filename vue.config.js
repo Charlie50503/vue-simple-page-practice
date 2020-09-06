@@ -6,7 +6,7 @@ module.exports = {
     config
       .plugin('html')
       .tap(args => {
-        args[0].title= '高雄旅遊資訊頁面1'
+        args[0].title= '高雄旅遊資訊頁面'
         return args
       })
   }
