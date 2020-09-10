@@ -116,7 +116,7 @@
 						<li class="page-idx-li prev">
 							<a href="#" @click="changeView(pageIdx-1)">{{pagePrevLabel}}</a>
 						</li>
-						<li v-for="page in viewPageIdxList" :class="pageIdxLiClass(page)">
+						<li v-for="page in viewPageIdxList" :class="pageIdxLiClass(page)" :key="`page_${page}`">
 							<a href="#" @click="changeView(page)">{{page}}</a>
 						</li>
 						<li class="page-idx-li next">
